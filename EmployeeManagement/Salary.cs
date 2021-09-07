@@ -105,5 +105,47 @@ namespace EmployeeManagement
             }
             return false;
         }
+
+        public bool FindSum()
+        {
+            try
+            {
+                SalaryDetailModel displayModel = new SalaryDetailModel();
+
+
+                using (SalaryConnection)
+                {
+                    SqlCommand command = new SqlCommand("SELECT SUM(s.EmpSalary), e.Gender FROM Salary s INNER JOIN EmployeeTable e ON s.Empid = e.Empid  GROUP BY Gender;", SalaryConnection);
+                    SalaryUpdateModel updateModel = new SalaryUpdateModel();
+
+                    SalaryConnection.Open();
+                    SqlDataReader dr = command.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            updateModel.EmployeeSalary = dr.GetDecimal(0);
+                            displayModel.Gender = dr.GetString(1);
+                            Console.WriteLine(displayModel.Gender + " " + updateModel.EmployeeSalary);
+
+                        }
+                        return true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("No data found.");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                SalaryConnection.Close();
+            }
+            return false;
+        }
     }
 }

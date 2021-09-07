@@ -12,5 +12,6 @@ namespace EmployeeManagement.Model.SalaryModel
         public string Month { get; set; }
         public decimal EmployeeSalary { get; set; }
         public int SalaryId { get; set; }
+        public string Gender { get; set; }
     }
 }

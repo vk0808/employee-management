@@ -30,5 +30,14 @@ namespace EmployeeManagementTest
             var Employeename = salary.RetrieveEmployee_BetweenParticularDate();
             Assert.IsTrue(Employeename);
         }
+
+        [TestMethod]
+        public void GivenGender_ShouldReturnSalarySum()
+        {
+            Salary salary = new Salary();
+            var Employeename = salary.FindSum();
+            Assert.IsTrue(Employeename);
+        }
+
     }
 }
