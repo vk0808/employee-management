@@ -65,5 +65,45 @@ namespace EmployeeManagement
             }
             return salary;
         }
+
+        public bool RetrieveEmployee_BetweenParticularDate()
+        {
+            try
+            {
+                SalaryDetailModel displayModel = new SalaryDetailModel();
+
+
+                using (SalaryConnection)
+                {
+                    SqlCommand command = new SqlCommand("SELECT EmpName FROM EmployeeTable WHERE HireDay BETWEEN '2007-07-12' and GETDATE();", SalaryConnection);
+
+                    SalaryConnection.Open();
+                    SqlDataReader dr = command.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            displayModel.EmployeeName = dr.GetString(0);
+                            Console.WriteLine(displayModel.EmployeeName);
+
+                        }
+                        return true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("No data found.");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                SalaryConnection.Close();
+            }
+            return false;
+        }
     }
 }

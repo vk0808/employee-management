@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EmployeeManagement.Model.SalaryModel;
+using System;
 
 namespace EmployeeManagement
 {
@@ -6,7 +7,9 @@ namespace EmployeeManagement
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Employee Management Program\n");
+            Salary salary = new Salary();
+            SalaryUpdateModel updateModel = new SalaryUpdateModel();
         }
     }
 }

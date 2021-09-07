@@ -22,5 +22,13 @@ namespace EmployeeManagementTest
             int EmpSalary = salary.UpdateEmployeeSalary(updateModel);
             Assert.AreEqual(updateModel.EmployeeSalary, EmpSalary);
         }
+
+        [TestMethod]
+        public void GivenDateRange_ShouldReturnEmployeeName()
+        {
+            Salary salary = new Salary();
+            var Employeename = salary.RetrieveEmployee_BetweenParticularDate();
+            Assert.IsTrue(Employeename);
+        }
     }
 }
