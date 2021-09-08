@@ -32,3 +32,22 @@ IF(XACT_STATE()) = 1
 END CATCH
 END
 GO
+
+
+CREATE PROCEDURE [dbo].[SpAddingRecord]
+(
+	@EmpName VARCHAR(20),
+	@Gender CHAR(1),
+	@HireDay DATE,
+	@DeptNo INT,
+	@Email VARCHAR(20),
+	@BirthDay DATE,
+	@JobDiscription VARCHAR(20),
+	@ProfileImage VARCHAR(20)
+)
+AS
+BEGIN
+	INSERT INTO [EmployeeTable] VALUES
+	(@EmpName,@Gender,@HireDay,@DeptNo,@Email,@BirthDay,@JobDiscription,@ProfileImage)
+END
+GO

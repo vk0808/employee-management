@@ -147,5 +147,45 @@ namespace EmployeeManagement
             }
             return false;
         }
+
+        public bool AddNewRecord(SalaryDetailModel displayModel)
+        {
+            SqlConnection SalaryConnection = ConnectionSetup();
+
+            try
+            {
+                using (SalaryConnection)
+                {
+                    SqlCommand command = new SqlCommand("SpAddingRecord", SalaryConnection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@EmpName", displayModel.EmployeeName);
+                    command.Parameters.AddWithValue("@Gender", displayModel.Gender);
+                    command.Parameters.AddWithValue("@HireDay", displayModel.HireDate);
+                    command.Parameters.AddWithValue("@DeptNo", displayModel.DeptNo);
+                    command.Parameters.AddWithValue("@Email", displayModel.Email);
+                    command.Parameters.AddWithValue("@BirthDay", displayModel.BirthDay);
+                    command.Parameters.AddWithValue("@JobDiscription", displayModel.JobDescription);
+                    command.Parameters.AddWithValue("@ProfileImage", displayModel.ProfileImage);
+                    SalaryConnection.Open();
+
+                    var result = command.ExecuteNonQuery();
+                    SalaryConnection.Close();
+                    if (result != 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                SalaryConnection.Close();
+            }
+            return false;
+        }
     }
 }

@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using EmployeeManagement;
 using EmployeeManagement.Model.SalaryModel;
+using System;
 
 namespace EmployeeManagementTest
 {
@@ -36,6 +37,26 @@ namespace EmployeeManagementTest
         {
             Salary salary = new Salary();
             var Employeename = salary.FindSum();
+            Assert.IsTrue(Employeename);
+        }
+
+        [TestMethod]
+        public void AddNewRecord()
+        {
+            Salary salary = new Salary();
+            SalaryDetailModel detailModel = new SalaryDetailModel()
+            {
+                EmployeeName = "Roshni",
+                Gender = "F",
+                HireDate = new DateTime(2019, 05, 09),
+                DeptNo = 3,
+                Email = "roshni@gmail.com",
+                BirthDay = new DateTime(1993, 03, 19),
+                JobDescription = "Software Developer",
+                ProfileImage = "url",
+
+            };
+            var Employeename = salary.AddNewRecord(detailModel);
             Assert.IsTrue(Employeename);
         }
 
